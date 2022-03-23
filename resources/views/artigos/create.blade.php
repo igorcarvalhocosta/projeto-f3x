@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('cabecalho')
-Adicionar Séries
+Adicionar Artigos
 @endsection
 
 @section('conteudo')
@@ -16,16 +16,40 @@ Adicionar Séries
     </div>
 @endif
 
-<form method="post">
-    @csrf
-    <div class="row">
-        <div class="col col-8">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" name="nome" id="nome">
-        </div>
-    </div>
-    <button class="btn btn-primary mt-2">Adicionar</button>
-</form>
+<style>
+.login-btn {
+    padding: 13px 30px;
+    background-color: #000;
+    border-radius: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff
+}
 
+.login-btn:hover {
+    border: 1px solid #000;
+    background-color: transparent;
+    color: #000
+}
+
+label {
+    font-size: 18px;
+}
+</style>
+
+<form method="post">
+@csrf
+  <div class="form-outline mb-4">
+    <label class="form-label" for="titulo">Titulo</label>
+    <input name="titulo" type="text" id="titulo" class="form-control" />
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="texto">Texto</label>
+    <textarea name="texto" class="form-control" id="texto" rows="4"></textarea>
+  </div>
+
+  <button type="submit" class="btn login-btn mb-4">Adicionar</button>
+</form>
 @endsection('cabecalho')
     

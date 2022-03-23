@@ -11,6 +11,7 @@
     <title>Controle de Artigos</title>
 </head>
 <body>
+    @auth
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-flex justify-content-between">
         <div class="container">
             <a class="navbar-brand" href="{{ route('listar_artigos') }}">Home</a>
@@ -23,9 +24,10 @@
             @endguest
         </div>
     </nav>
+    @endauth
     <div class="container">
         <div class="jumbotron mb-1 mt-3">
-            <h1>@yield('cabecalho')</h1>
+            <h1 class="display-4">@yield('cabecalho')</h1>
         </div>
         @yield('conteudo')
     </div>

@@ -1,12 +1,4 @@
-@extends('layout')
-
-@section('conteudo')
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
+body {
     background-color: #fff;
     font-family: 'Karla', sans-serif
 }
@@ -245,70 +237,3 @@ h1>a {
     font-size: 14px;
     text-align: center
 }
-    </style>
-</head>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-6 col-md-7 intro-section">
-            <div class="brand-wrapper">
-                <h1><a href="#"></a>Artigos</h1>
-            </div>
-            <div class="intro-content-wrapper">
-                <h1 class="intro-title">Bem vindo ao nosso site!</h1>
-                <p class="intro-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p> <a href="#" class="btn btn-read-more">Saiba mais</a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-5 form-section">
-            <div class="login-wrapper">
-                <h2 class="login-title">Crie sua conta</h2>
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-
-                    <div class="form-group"> <label for="name" class="sr-only">Nome Completo</label> <input type="text" name="name" id="name" class="form-control 
-                    @error('name') is-invalid @enderror"
-                    name="name"
-                    value="{{ old('name') }}"
-                    required autocomplete="name" autofocus
-                    placeholder="Nome"> 
-                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                    </div>
-                    <div class="form-group mb-3"> <label for="email" class="sr-only">Endereço de email</label> <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror"
-                    value="{{ old('email') }}"
-                    required autocomplete="email"
-                    placeholder="E-mail"> </div>
-                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                    <div class="form-group mb-3"> <label for="password" class="sr-only">Password</label> <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror"
-                    required autocomplete="new-password" 
-                    placeholder="Senha"> </div>
-
-                    <div class="form-group mb-3">
-                            <label for="password-confirm" class="sr-only">{{ __('Confirm Password') }}</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"
-                                placeholder="Confirme sua senha">
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-4"> <input name="register" type="submit" id="register" class="btn login-btn" type="button" value="Inscrever-se">
-                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                    
-                </div>
-                </form>
-                <p class="login-wrapper-footer-text">Já possui uma conta?<a href="{{ route('login') }}" class="text-reset">Entrar</a></p>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-
-

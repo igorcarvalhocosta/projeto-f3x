@@ -13,14 +13,19 @@ Route::post('/artigos/criar', [ArtigosController::class, 'store'])
     ->middleware('auth')   ;
 Route::delete('/artigos/{id}', [ArtigosController::class, 'destroy'])
     ->middleware('auth');
-Route::post('/artigos/{id}/editaNome', [ArtigosController::class, 'editaNome'])
+Route::post('/artigos/{id}/editaArtigo', [ArtigosController::class, 'editaArtigo'])
     ->middleware('auth');
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', function(){
+    return redirect('/artigos');
+})->name('home');
 
 Route::get('/sair', function () {
-
     Auth::logout();
+    return redirect('/login');
+});
+
+Route::get('/', function(){
     return redirect('/login');
 });

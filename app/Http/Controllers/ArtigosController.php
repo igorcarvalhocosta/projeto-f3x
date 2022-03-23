@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Http\Requests\SeriesFormRequest;
+use App\Http\Requests\ArtigosFormRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Serie;
-use App\Episodio;
-use App\Temporada;
+use App\Artigo;
+
 
 class ArtigosController {
 
     public function index(Request $request)
     {
-        $series = Serie :: query()
-            ->orderBy('nome')
+        $artigos = Artigo :: query()
+            ->orderBy('titulo')
             ->get();
         $mensagem = $request->session()->get('mensagem');
 
         return view('artigos.index', [
-            'series' => $series,
+            'artigos' => $artigos,
             'mensagem' => $mensagem
         ]);
     }
@@ -28,14 +27,14 @@ class ArtigosController {
         return view('artigos.create');
     }
 
-    public function store(SeriesFormRequest $request)
+    public function store(ArtigosFormRequest $request)
     {
-        $serie = Serie::create(['nome'=>$request->nome]);
+        $artigo = Artigo::create(['titulo'=>$request->titulo, 'texto'=>$request->texto]);
 
         $request->session()
             ->flash(
                 'mensagem',
-                "Série {$serie->id} criada com sucesso: {$serie->nome}."
+                "Artigo criada com sucesso: {$artigo->titulo}."
             );
 
         return redirect()->route('listar_artigos');
@@ -43,22 +42,22 @@ class ArtigosController {
 
     public function destroy(Request $request)
     {
-        Serie::destroy($request->id);
+        Artigo::destroy($request->id);
         $request->session()
             ->flash(
                 'mensagem',
-                "Série removida com sucesso."
+                "Artigo removido com sucesso."
             );
         
         return redirect()->route('listar_artigos');
     }
 
-    public function editaNome(int $id, Request $request)
+    public function editaArtigo(int $id, Request $request)
     {
-        $novoNome = $request->nome;
-        $serie = Serie::find($id);
-        $serie->nome = $novoNome;
-        $serie->save();
+        $artigo = Artigo::find($id);
+        $artigo->titulo = $request->titulo;
+        $artigo->texto = $request->texto;
+        $artigo->save();
     }
 
 }
