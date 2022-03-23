@@ -27,7 +27,20 @@ Para que o projeto execute de maneira satisfatória, há a necessidade de instal
 
  - Documentação do Laravel explica como instalar.
 
-4) Depois que tudo foi instalado vamos buildar e subir a nossa aplicação:
+4) Para fazer a conexão com o banco de dados MySQL:
+
+Deverá criar o arquivo .env na raiz do projeto, com o conteúdo igual ao que o arquivo .env.example nos oferece, modificando apenas o seguinte campo colocando o nome do banco de dados:
+
+```
+DB_DATABASE=nome-bando-de-dados
+```
+
+5) Para criar as tabelas e campos da forma correta no seu banco de dados deverá rodar o seguinte comando:
+```
+> php artisan migrate
+```
+
+6) Depois que tudo foi instalado vamos buildar e subir a nossa aplicação:
 
 Deverá abrir o seu terminal e digitar o seguinte comando abaixo:
 ```
